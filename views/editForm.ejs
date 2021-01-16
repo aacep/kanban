@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban</title>
+</head>
+<body>
+    <h1>Edit Activities</h1>
+    <hr>
+    <form action="/<%= data.id %>/edit" method="POST">
+        <label for="fname">Activity Name:</label><br>
+        <input value="<%= data.todo %>" type="text" name="fname"><br>
+        <label for="ldate">Last Date:</label><br>
+        <input value="<%= data.due_to.toLocaleDateString() %>"  type="date" name="ldate">
+        <input type="submit" value="Edit">
+    </form>
+
+    
+</body>
+</html>

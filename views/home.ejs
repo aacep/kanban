@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban Board</title>
+</head>
+<body>
+    <h1>Kanban Board</h1>
+    <hr>
+    <a href="/add">Add Activity</a>
+    <div>
+        <div style="display: inline-flex;"><table border="1px">
+            <tr>
+                <th colspan="3">To Do</th>
+            </tr>
+            <tr>
+                <th>Deskripsi</th>
+                <th>Tanggal</th>
+                <th>Action</th>
+            </tr>
+            
+            <% data.forEach(elem => { %>
+                <% if (elem.todo_status) { %>
+                <tr>
+                    <td><%= elem.todo %></td>
+                    <td><%= elem.due_to.toLocaleDateString() %></td>
+                    <td><a href='/<%= elem.id %>/edit'>Edit</a> || <a href='/<%= elem.id %>/delete'>Delete</a> || <a href='/<%= elem.id %>/doing'>Doing?</a></td>
+                </tr>
+                <% } %>
+    
+            <% }) %>
+        </table><br><br></div>
+        <div style="display: inline-flex;">
+            <table  border="1px">
+                <tr>
+                    <th colspan="3">Doing</th>
+                </tr>
+                <tr>
+                    <th>Deskripsi</th>
+                    <th>Action</th>
+                </tr>
+                <% data.forEach(elem => { %>
+                    <% if (elem.doing_status) { %>
+                    <tr>
+                        <td><%= elem.doing %></td>
+                        <td><a href='/<%= elem.id %>/done'>Done?</a></td>
+                    </tr>
+                    <% } %>
+                <% }) %>
+            </table><br><br>
+        </div>
+        <div style="display: inline-flex;">
+            <table  border="1px">
+                <tr>
+                    <th colspan="3">Done</th>
+                </tr>
+                <tr>
+                    <th>Deskripsi</th>
+                </tr>
+                <% data.forEach(elem => { %>
+                    <% if (!elem.doing_status) { %>
+                    <tr>
+                        <td><%= elem.done %></td>
+                    </tr>
+                    <% } %>
+                <% }) %>
+            </table>
+        </div>
+    </div>
+    
+
+    
+
+    
+    
+    
+</body>
+</html>
